@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAZON TR-1</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+        .dots {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background: transparent;
+        }
+        .pulse {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.08);
+            position: absolute;
+            animation: blink 4s infinite ease-in-out alternate;
+        }
+        @keyframes blink {
+            0% {opacity: 0.1;}
+            100% {opacity: 0.5;}
+        }
+        h1 {
+            position: absolute;
+            top: 40%;
+            width: 100%;
+            text-align: center;
+            font-size: 2em;
+        }
+    </style>
+
+    <script>
+        // Neural pulse effect
+        document.addEventListener("DOMContentLoaded", function () {
+            const canvas = document.createElement("canvas");
+            canvas.classList.add("dots");
+            document.body.appendChild(canvas);
+            const ctx = canvas.getContext("2d");
+            let width, height;
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener("resize", resize);
+            resize();
+
+            const dots = Array.from({ length: 160 }).map(() => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: Math.random() * 1.4 + 0.6,
+                dx: Math.random() * 0.2 - 0.1,
+                dy: Math.random() * 0.2 - 0.1,
+            }));
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                ctx.fillStyle = "rgba(255,255,255,0.08)";
+                dots.forEach(dot => {
+                    dot.x += dot.dx;
+                    dot.y += dot.dy;
+                    if (dot.x < 0 || dot.x > width) dot.dx *= -1;
+                    if (dot.y < 0 || dot.y > height) dot.dy *= -1;
+                    ctx.beginPath();
+                    ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="dots" id="dots"></div>
+    <h1>FAZON — Where Meaning Becomes Reality</h1>
+    <script>
+        const dotsContainer = document.getElementById('dots');
+        for (let i = 0; i < 200; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'pulse';
+            dot.style.left = Math.random() * 100 + 'vw';
+            dot.style.top = Math.random() * 100 + 'vh';
+            dot.style.animationDelay = Math.random() * 5 + 's';
+            dot.style.backgroundColor = `rgba(255, 255, 255, ${Math.random() * 0.2})`;
+            dotsContainer.appendChild(dot);
+        }
+    </script>
+
+    <footer style="position: fixed; bottom: 10px; width: 100%; text-align: center; font-size: 0.8em; color: #888;">
+        <a href="глоссарий.html" style="color: #888; margin: 0 10px;">Johnson Glossary</a> |
+        <a href="r2-gate.html" style="color: #888; margin: 0 10px;">TR-2 Gate</a> |
+        <a href="pulse.html" style="color: #888; margin: 0 10px;">Pulses</a>
+    </footer>
+</body>
+
+</html>
