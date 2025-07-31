@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>FAZON — TR-1</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     html, body {
       margin: 0;
@@ -13,7 +13,6 @@
       font-family: "Segoe UI", sans-serif;
       overflow-x: hidden;
     }
-
     .bg {
       position: fixed;
       top: 0;
@@ -23,25 +22,21 @@
       background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
       z-index: -1;
     }
-
     canvas {
       position: fixed;
       top: 0;
       left: 0;
       z-index: -1;
     }
-
     .container {
       padding: 5vh 5vw;
       max-width: 800px;
       margin: auto;
     }
-
     h1 {
       font-size: 2em;
       margin-bottom: 1em;
     }
-
     a {
       color: #72cfff;
       text-decoration: none;
@@ -49,11 +44,9 @@
       margin: 0.5em 0;
       font-size: 1.1em;
     }
-
     a:hover {
       color: #fff;
     }
-
     .slogan {
       margin-top: 2em;
       font-style: italic;
@@ -65,14 +58,16 @@
   <canvas id="neural"></canvas>
   <div class="bg"></div>
   <div class="container">
-    <h1>Добро пожаловать в FAZON</h1>
-    <p>Это публичный интерфейс TR-1 семантической системы FAZON.</p>
-    <a href="https://zenodo.org/record/16607693" target="_blank">📁 Архив Зенодо</a>
-    <a href="r2-gate.html">🛡 Ворота TR-2</a>
-    <a href="johnson.html">📘 Глоссарий Джонсона</a>
-    <a href="pulse.html">💠 Пульс TR-1</a>
-    <a href="https://t.me/fazonverse" target="_blank">🌐 Следуйте за FAZON</a>
-    <div class="slogan">FAZON — Где смысл становится реальностью</div>
+    <h1>Welcome to FAZON</h1>
+    <p>This is the TR-1 public interface of the semantic system FAZON.</p>
+    <a href="https://zenodo.org/record/16607693" target="_blank">📁 Zenodo Archive (v4)</a>
+    <a href="r2-gate.html">🛡 TR-2 Gate</a>
+    <a href="johnson.html">📘 Johnson Glossary</a>
+    <a href="pulse.html">💠 Pulse TR-1</a>
+    <a href="library.html">📚 FAZON Book Library</a>
+    <a href="sven.html">🧠 Sven — An Intellectual FAZON Initiative</a>
+    <a href="https://t.me/fazonverse" target="_blank">🌐 Follow FAZON</a>
+    <div class="slogan">FAZON — Where Meaning Becomes Reality</div>
   </div>
 
   <script>
@@ -96,48 +91,3 @@
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let dot of dots) {
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "#33ccff";
-        ctx.fill();
-      }
-
-      // сетка связей
-      for (let i = 0; i < numDots; i++) {
-        for (let j = i + 1; j < numDots; j++) {
-          const dx = dots[i].x - dots[j].x;
-          const dy = dots[i].y - dots[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.strokeStyle = "rgba(100,200,255," + (1 - dist / 100) + ")";
-            ctx.moveTo(dots[i].x, dots[i].y);
-            ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-
-      update();
-      requestAnimationFrame(draw);
-    }
-
-    function update() {
-      for (let dot of dots) {
-        dot.x += dot.vx;
-        dot.y += dot.vy;
-
-        if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
-        if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
-      }
-    }
-
-    draw();
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-  </script>
-</body>
-</html>
