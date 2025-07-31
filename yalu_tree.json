@@ -1,0 +1,16 @@
+{
+  "core": {
+    "id": "TR1_ROOT",
+    "name": "FAZON Root",
+    "children": [
+      {
+        "id": "GLOSSARY",
+        "name": "Johnson Glossary"
+      },
+      {
+        "id": "PULSE_TR1",
+        "name": "Pulse Level TR-1"
+      }
+    ]
+  }
+}
