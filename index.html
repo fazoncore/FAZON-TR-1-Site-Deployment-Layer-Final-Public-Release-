@@ -13,7 +13,6 @@
       font-family: "Segoe UI", sans-serif;
       overflow-x: hidden;
     }
-
     .bg {
       position: fixed;
       top: 0;
@@ -23,25 +22,21 @@
       background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
       z-index: -1;
     }
-
     canvas {
       position: fixed;
       top: 0;
       left: 0;
       z-index: -1;
     }
-
     .container {
       padding: 5vh 5vw;
       max-width: 800px;
       margin: auto;
     }
-
     h1 {
       font-size: 2em;
       margin-bottom: 1em;
     }
-
     a {
       color: #72cfff;
       text-decoration: none;
@@ -49,11 +44,9 @@
       margin: 0.5em 0;
       font-size: 1.1em;
     }
-
     a:hover {
       color: #fff;
     }
-
     .slogan {
       margin-top: 2em;
       font-style: italic;
@@ -66,15 +59,14 @@
   <div class="bg"></div>
   <div class="container">
     <h1>Welcome to FAZON</h1>
-    <p>This is the public TR-1 interface of the FAZON semantic system.</p>
+    <p>This is the TR-1 public interface of the FAZON semantic system.</p>
     <a href="https://zenodo.org/record/16607693" target="_blank">📁 Zenodo Archive</a>
     <a href="r2-gate.html">🛡 TR-2 Gate</a>
     <a href="johnson.html">📘 Johnson Glossary</a>
-    <a href="pulse.html">💠 Pulse TR-1</a>
+    <a href="pulse.html">💠 TR-1 Pulse</a>
     <a href="https://t.me/fazonverse" target="_blank">🌐 Follow FAZON</a>
     <div class="slogan">FAZON — Where Meaning Becomes Reality</div>
   </div>
-
   <script>
     const canvas = document.getElementById("neural");
     const ctx = canvas.getContext("2d");
@@ -126,14 +118,12 @@
       for (let dot of dots) {
         dot.x += dot.vx;
         dot.y += dot.vy;
-
         if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
         if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
       }
     }
 
     draw();
-
     window.addEventListener("resize", () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
